@@ -1,0 +1,30 @@
+{
+  "name": "express-dynamic-signup-page",
+  "version": "1.0.0",
+  "description": "Fully dynamic signup page using express, MongoDB, mongoose, multer, and many more js library. I will follow MVC architectural pattern here.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohammad-mesbaul-haque/dynamic-signup-page.git"
+  },
+  "author": "Mohammad Mesbaul Haque <mesbaul333@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "bugs": {
+    "url": "https://github.com/mohammad-mesbaul-haque/dynamic-signup-page/issues"
+  },
+  "homepage": "https://github.com/mohammad-mesbaul-haque/dynamic-signup-page#readme",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Express",
+    "Multer",
+    "nodejs",
+    "MVC",
+    "mongodb",
+    "mongoose"
+  ]
+}
