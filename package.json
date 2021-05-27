@@ -14,9 +14,17 @@
     "url": "https://github.com/mohammad-mesbaul-haque/dynamic-signup-page/issues"
   },
   "homepage": "https://github.com/mohammad-mesbaul-haque/dynamic-signup-page#readme",
-  "dependencies": {},
-  "devDependencies": {},
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.11",
+    "multer": "^1.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
   "scripts": {
+    "start": "SET NODE_ENV=staging&&nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
