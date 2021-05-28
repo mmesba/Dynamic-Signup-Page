@@ -9,6 +9,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const errorHandler = require('./Controllers/errorHandler');
+const bodyParser = require('body-parser');
+const submit = require('./Controllers/submit');
 
 // dotenv permission
 dotenv.config();
@@ -41,6 +43,9 @@ app.use('/Assets', express.static('./Assets'));
 app.get('/', (req, res)=>{
     res.render('index');
 })
+
+app.post('/', submit)
+
 
 // Unknown url (404) grabber.
 app.all('*', (req, res)=>{
