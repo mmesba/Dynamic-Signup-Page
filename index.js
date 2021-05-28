@@ -7,6 +7,7 @@
 // Dependencies.
 const express = require('express');
 const dotenv = require('dotenv');
+const errorHandler = require('./Controllers/errorHandler');
 
 
 // App object or Module scaffolding.
@@ -29,15 +30,12 @@ app.get('/', (req, res)=>{
     res.render('index');
 })
 
-
-// App's error handling
-app.use(function(err, req, res, next){
-    if (err) {
-        res.status(500).send(err.message);
-    } else {
-        res.status(500).send('There was an error !');
-    }
+// Unknown url (404) grabber.
+app.all('*', (req, res)=>{
+    res.render('404.ejs', {url : req.originalUrl})
 })
+// Using app's error handler
+app.use(errorHandler);
 
 // Creating Server
 app.listen(port, ()=>{
