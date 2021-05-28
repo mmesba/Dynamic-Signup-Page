@@ -17,12 +17,12 @@ const path = require('path');
 dotenv.config();
 
 // Connecting with mongoDB
-mongoose.connect('mongodb://localhost/forms', {
+mongoose.connect(process.env.URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
 
-.then(()=> console.log('Connection Successful with mongoDB'))
+.then(()=> console.log('Connection Successful with mongoDB atlas'))
 .catch((err)=>{
     console.log(err)
 })
