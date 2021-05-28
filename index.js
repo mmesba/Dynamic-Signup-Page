@@ -7,8 +7,22 @@
 // Dependencies.
 const express = require('express');
 const dotenv = require('dotenv');
+const mongoose = require('mongoose');
 const errorHandler = require('./Controllers/errorHandler');
 
+// dotenv permission
+dotenv.config();
+
+// Connecting with mongoDB
+mongoose.connect(process.env.URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+
+.then(()=> console.log('Connection Successful with mongoDB'))
+.catch((err)=>{
+    console.log(err)
+})
 
 // App object or Module scaffolding.
 const app = express();
@@ -16,8 +30,6 @@ const app = express();
 // Set View engine
 app.set('view engine', 'ejs');
 
-// dotenv permission
-dotenv.config();
 const port = process.env.PORT || 8080;
 
 // initiate static dir
