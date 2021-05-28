@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="Dynamic-Form-Submission" />
+    <meta name="author" content="Mohammad Mesbaul Haque" />
+    <meta
+      name="author-profile"
+      content="https://github.com/mohammad-mesbaul-haque"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+    <title>Submission Done</title>
+  </head>
+  <body>
+    <div class="jumbotron text-center">
+      <h1 class="display-3">Thank You <%= data.firstName+ data.lastName %> !</h1>
+      <p class="lead">
+        <strong>Please check your email</strong> for further instructions. We will mail you later.
+      </p>
+      <hr />
+      <p>Having trouble? <a href="/">Contact us</a></p>
+      <p class="lead">
+        <a
+          class="btn btn-primary btn-sm"
+          href="/"
+          role="button"
+          >Continue to homepage</a
+        >
+      </p>
+    </div>
+  </body>
+</html>

@@ -29,7 +29,7 @@ const submit = (req, res)=>{
         if (err) {
             res.status(500).send('Error uploading data'+err.message)
         } else {
-            res.status(200).send('Successfully uploaded data')
+            res.render('success', {data: req.body});
         }
     })
 }

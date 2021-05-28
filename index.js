@@ -1,22 +1,23 @@
 /*
- * Title: Dynamic Signup Page
- * Description: Dynamic Signup Page project's index.js file or entry point.
- * Author: Mohammad Mesbaul Haque (github profile: https://github.com/Mohammad-Mesbaul-Haque )
- * Date: 28/05/2021
- */
+* Title: Dynamic Signup Page
+* Description: Dynamic Signup Page project's index.js file or entry point.
+* Author: Mohammad Mesbaul Haque (github profile: https://github.com/Mohammad-Mesbaul-Haque )
+* Date: 28/05/2021
+*/
 // Dependencies.
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const errorHandler = require('./Controllers/errorHandler');
-const bodyParser = require('body-parser');
 const submit = require('./Controllers/submit');
+const multer = require('multer');
+const path = require('path');
 
 // dotenv permission
 dotenv.config();
 
 // Connecting with mongoDB
-mongoose.connect(process.env.URI, {
+mongoose.connect('mongodb://localhost/forms', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -34,6 +35,54 @@ app.set('view engine', 'ejs');
 
 const port = process.env.PORT || 8080;
 
+// Multer functions
+
+
+// Define upload folder
+const UPLOADS_FOLDER = './Assets/images/';
+
+// Main functions.
+
+//define the storage and rename filename.
+const storage = multer.diskStorage({
+    destination: (req, file, cb) =>{
+        cb(null, UPLOADS_FOLDER);
+    },
+    filename: (req, file, cb) =>{
+        const fileExt = path.extname(file.originalname);
+        const fileName = file.originalname
+                                        .replace(fileExt, '')
+                                        .toLowerCase()
+                                        .split(' ')
+                                        .join('_') + '-' +
+                                        Date.now();
+        cb(null, fileName+fileExt);
+    }
+})
+
+// Prepare the final multer object.
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 1024*1024
+    },
+    fileFilter: (req, file, cb)=>{
+        if (file.fieldname === 'profilePicture') {
+            if (file.mimetype === 'image/png' ||
+                file.mimetype === 'image/jpg'   ||
+                file.mimetype === 'image/jpeg'
+            ) {
+                cb(null, true)
+            } else {
+                cb(new Error('Only jpg, jpeg or png format allowed'))
+            }
+        } else {
+            cb(new Error('There was an unknown error !'))
+        }    
+    }
+})
+
+
 // initiate static dir
 app.use('/Assets', express.static('./Assets'));
 
@@ -44,7 +93,8 @@ app.get('/', (req, res)=>{
     res.render('index');
 })
 
-app.post('/', submit)
+// Post data to server and save database.
+app.post('/',upload.single('profilePicture'), submit)
 
 
 // Unknown url (404) grabber.
